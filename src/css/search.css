@@ -1,0 +1,21 @@
+.bodyContanier
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+.map{
+    position: sticky;
+    top: 121px;
+    right: 0;
+    height: 100%;
+}
+.images
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+}

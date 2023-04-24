@@ -1,0 +1,53 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+#logo
+{
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    cursor: pointer;
+}
+.navbar
+{
+    position: sticky;
+    top: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    height: 120px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 29, 160);
+    border-bottom: 0.5px solid rgb(190, 190, 190);
+}
+.login
+{
+    cursor: pointer;
+    outline: none;
+    height: 40px;
+    width: 110px;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: larger;
+    font-weight: bold;
+    color: #2c52fe;
+    background-color:  #ffffff;
+}
+.login:hover
+{
+    transition-duration: 0.2s;
+    background-color:#d3d3d3;
+    
+}
+.inputs
+{
+    position: relative;
+    top: 65px;
+}
