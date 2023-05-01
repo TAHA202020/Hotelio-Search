@@ -17,12 +17,12 @@
     padding-left: 50px;
     padding-right: 50px;
     display: flex;
-    height: 120px;
+    height: 110px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(0, 29, 160);
     border-bottom: 0.5px solid rgb(190, 190, 190);
+    z-index: 10;
 }
 .login
 {
@@ -37,17 +37,23 @@
     padding-right: 20px;
     font-size: larger;
     font-weight: bold;
-    color: #2c52fe;
-    background-color:  #ffffff;
+    color: #0B162C;
+    background-color: #5FC2BA;
+}
+.inputs
+{
+    width: 50%;
 }
 .login:hover
 {
     transition-duration: 0.2s;
-    background-color:#d3d3d3;
+    background-color:#61d6cc;
     
 }
-.inputs
-{
-    position: relative;
-    top: 65px;
-}
+/*
+white
+#1C2942
+#3B556D
+
+#0B162C
+*/

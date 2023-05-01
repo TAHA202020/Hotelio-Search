@@ -1,18 +1,17 @@
-*
-{
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto Slab', serif;
-}
 img
 {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     object-fit: cover;
 }
 .title
 {
-    text-align: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    overflow-wrap: normal;
 }
 .left
 {
@@ -24,32 +23,25 @@ img
 {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 270px;
     
-}
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
-*
+}.card
 {
     padding: 0;
     margin: 0;
-    font-family: 'Roboto Slab', serif;
-}
-.card
-{
-    margin-left: 10px;
-    margin-right: 10px;
     position: relative;
-    display: inline-flex;
-    max-width: 250px;
-    flex-direction: column;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
     align-items: center;
     border-radius: 8px;
+    background-color: white;
     border: 0.5px solid rgb(216, 216, 216);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     overflow: hidden;
     background-color: rgba(216, 216, 216, 0.2);
-    padding-bottom: 10px;
     transition-duration: 0.3s;
 }
 .card:hover
@@ -57,10 +49,14 @@ img
     transition-duration:  0.3s;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+p
+{
+    margin: 0;
+}
 .icon
 {
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
     object-fit: cover;
 }
 .change
@@ -68,7 +64,7 @@ img
     height: 250px;
     width: 30px;
     border: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .change:hover
 {
@@ -76,11 +72,12 @@ img
 }
 .info
 {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 .people
 {
@@ -90,23 +87,46 @@ img
     align-items: center;
 }
 .book {
-  background-color: #222;
+  background-color: #5FC2BA;
   border-radius: 4px;
   border-style: none;
   font-size:16px;
-  box-sizing: border-box;
-  color: #fff;
+  font-weight: bold;
+  color: #0B162C;
   padding: 10px 50px 10px 50px;
   cursor: pointer;
-  display: inline-block;
   text-align: center;
-  width: 80%;
+  width: 150px;
+  position: relative;
+  left: 72%;
 }
 
 .book:hover {
-  opacity: .75;
+  background-color: #61d6cc;
 }
 .city
 {
-    font-family: 'Work Sans', sans-serif;
+    font-size: small;
+}
+.hotel-info
+{
+    background-color: white;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+.full-info
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.book-container
+{
+    position: relative;
+    width: 100%;
 }

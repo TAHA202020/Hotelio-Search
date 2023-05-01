@@ -1,7 +1,6 @@
 import { useState,useRef } from "react";
 import "./css/input.css";
 import DatePicker from "./DatePicker";
-import StarRatingComponent from 'react-star-rating-component';
 export default function Inputs()
 {
     let inputRef=useRef(null);
@@ -99,48 +98,12 @@ export default function Inputs()
         <div className="globalinput" >
             <div className="input-container">
                 <input type="text" ref={inputRef} onChange={getOptions} onFocus={handleFocus} onBlur={handleBlur}  id="textinput" placeholder="City"/>
-                {isVisible&&<div id="cityname" className="cityname" >
+                {isVisible&&<div id="cityname" >
                     {Array.from(cities).map((value,index)=> <div onMouseDown={ChangeInputValue} key={index} className="options">{value}</div>)}
                 </div>}
             </div>
             <DatePicker />
             <img src="./img/search.png" alt="search" className="searchbtn"/>
-        </div>
-        <div className="filters">
-            <div className="maxmin" ref={maxmin}>
-                <h4 className="tag">Price:</h4>
-                <input className="min" type="number" ref={min} onBlur={checkMin} placeholder="min" />
-                <input className="max" type="number" ref={max} onBlur={checkMin} placeholder="max"/>
-            </div>
-            <div className="stars-container">
-                <h4 className="tag rating">Rating:</h4>
-                <div className="stars">
-                <StarRatingComponent name="stars" value={stars} onStarHover={hoverStar} onStarHoverOut={resetStar} onStarClick={setStars}/>
-                </div>
-            </div>
-            <div className="stars-container">
-                <h4 className="tag freebies">Extras:</h4>
-                <div className="check-freebies">
-                    <input type="checkbox"/>
-                    <label className="label" onClick={changefreeBreakfast}>Free Breakfast</label>
-                    <input type="checkbox"/>
-                    <label className="label" onClick={changefreeParking}>Free Parking</label>
-                    <input type="checkbox"/>
-                    <label className="label" onClick={changegym}>Gym</label>
-                    <input type="checkbox"/>
-                    <label className="label" onClick={changepool}>Swimming Pool</label>
-                </div>
-            </div>
-            <div className="stars-container">
-                <h4 className="tag freebies">Travelers:</h4>
-                <div className="check-freebies">
-                    <div className="counter" >
-                        <div className="btn" onClick={removeTraveler}>-</div>
-                        <div className="count">{travelers}</div>
-                        <div className="btn" onClick={addTraveler}>+</div>
-                    </div>
-                </div>
-            </div>
         </div>
         </div>
     )
