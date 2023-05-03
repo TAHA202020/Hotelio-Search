@@ -1,11 +1,6 @@
-*
-{
-    margin: 0;
-    padding: 0;
-}
 #logo
 {
-    width: 110px;
+    flex:1 ;
     height: 110px;
     object-fit: contain;
     cursor: pointer;
@@ -17,9 +12,10 @@
     padding-left: 50px;
     padding-right: 50px;
     display: flex;
-    height: 110px;
+    gap: 100px;
+    height: 90px;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     border-bottom: 0.5px solid rgb(190, 190, 190);
     z-index: 10;
@@ -29,7 +25,7 @@
     cursor: pointer;
     outline: none;
     height: 40px;
-    width: 110px;
+    flex: 3;
     border: 0;
     border-radius: 8px;
     padding: 10px;
@@ -42,7 +38,7 @@
 }
 .inputs
 {
-    width: 50%;
+    flex: 3;
 }
 .login:hover
 {
