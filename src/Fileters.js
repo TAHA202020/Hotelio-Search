@@ -2,6 +2,7 @@ import "./css/filters.css"
 import { useState } from "react";
 import Checkinput from "./Checkinput";
 import StarRatingComponent from "react-star-rating-component";
+import { Select } from "antd";
 
 export default function Filters(props)
 {
@@ -58,10 +59,6 @@ export default function Filters(props)
                 <input type="checkbox" className="type-hebergement-checkbox"/>
                 <label className="type-hebergement"> Séjours chez l'habitant</label>
             </div>
-            
-            
-            
-
         </div>
     </div>
 );

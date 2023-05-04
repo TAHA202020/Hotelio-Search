@@ -39,7 +39,7 @@ return(
             </div>
             <div className="info">
                 <h5 className="city">{props.city}</h5>
-                <h5 className="city">À partir de {props.price}$</h5>
+                <h5 className="city">À partir de {props.price}$/day</h5>
             </div>
             <div className="book-container">
                 <button className="book">Reserver</button>

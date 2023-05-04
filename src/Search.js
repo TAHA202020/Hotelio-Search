@@ -6,6 +6,7 @@ import { useState } from "react";
 import "./css/search.css"
 import Images from "./Images";
 import Filters from "./Fileters";
+import { Select } from "antd";
 function App() {
 let [markers,setmarkers]=useState([
     {
@@ -175,6 +176,8 @@ let [markers,setmarkers]=useState([
       <Filters />
       <div className="bodyContanier">
         <div className="images">
+          <label className="label" style={{color:"black"}}>Filter By :</label>
+        <Select style={{width:"150px"}} defaultValue="None" options={[{value:"prix-croissant",label:"Ascending Price"},{value:"decreasing-price",label:"Decreasing Price"},{value:"rating",label:"Rating"},{value:"none",label:"None"}]}/>
           {markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.images} name={value.name} price={value.price} stars={value.rating} city={"Marseille"}/>)}
         </div>
         <div className="map">

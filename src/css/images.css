@@ -18,17 +18,20 @@ img
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
 }
 .right
 {
     position: absolute;
     top: 0;
     left: 270px;
+    height: 100%;
     
 }.card
 {
     padding: 0;
     margin: 0;
+    cursor: pointer;
     position: relative;
     display: flex;
     margin-top: 20px;
@@ -61,7 +64,7 @@ p
 }
 .change
 {
-    height: 250px;
+    height: 100%;
     width: 30px;
     border: 0;
     background-color: rgba(0, 0, 0, 0.1);
@@ -73,7 +76,9 @@ p
 .info
 {
     margin-bottom: 10px;
-    width: 90%;
+    width: 100%;
+    margin-right: 10px;
+    padding-left: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,12 +98,13 @@ p
   font-size:16px;
   font-weight: bold;
   color: #0B162C;
-  padding: 10px 50px 10px 50px;
   cursor: pointer;
   text-align: center;
-  width: 150px;
+  width: 100px;
+  padding: 10px;
   position: relative;
-  left: 72%;
+  float: right;
+  margin-right: 5px;
 }
 
 .book:hover {

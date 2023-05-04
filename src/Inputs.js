@@ -1,6 +1,7 @@
 import { useState,useRef } from "react";
 import "./css/input.css";
 import DatePicker from "./DatePicker";
+import { InputNumber } from "antd";
 export default function Inputs()
 {
     let inputRef=useRef(null);
@@ -70,29 +71,7 @@ export default function Inputs()
     {
         setfreeParking(!freeParking)
     }
-    let [travelers,settravelers]=useState(0);
-    const addTraveler=()=>
-    {
-        let count= travelers+1;
-        if(travelers<10)
-            settravelers(count);
-    }
-    const removeTraveler=()=>
-    {
-        let count= travelers-1;
-        if(travelers>0)
-            settravelers(count);
-    }
-    let [gym,setgym]=useState(false)
-    let [pool,setpool]=useState(false)
-    const changegym=()=>
-    {
-        setgym(!gym);
-    }
-    const changepool=()=>
-    {
-        setpool(!pool);
-    }
+    let [travelers,settravelers]=useState(1);
     return(
         <div className="inputsAll">
         <div className="globalinput" >
@@ -103,6 +82,7 @@ export default function Inputs()
                 </div>}
             </div>
             <DatePicker />
+            <InputNumber className="traverlers-count" min={0} max={10} value={travelers} onChange={(value)=>{settravelers(value)}}/>
             <img src="./img/search.png" alt="search" className="searchbtn"/>
         </div>
         </div>
