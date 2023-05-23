@@ -25,7 +25,7 @@
     cursor: pointer;
     outline: none;
     height: 40px;
-    flex: 3;
+    flex: 0.5;
     border: 0;
     border-radius: 8px;
     padding: 10px;
@@ -38,7 +38,7 @@
 }
 .inputs
 {
-    flex: 3;
+    flex:5 ;
 }
 .login:hover
 {
