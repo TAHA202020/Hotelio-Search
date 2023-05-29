@@ -43,22 +43,18 @@ export default function Filters(props)
         </div>
         <div className="extras">
             <label className="label">Type d'Hebergement:</label>
-            <div>
-                <input type="checkbox" className="type-hebergement-checkbox"/>
-                <label className="type-hebergement"> Hotel</label>
-            </div>
-            <div>
-            <input type="checkbox" className="type-hebergement-checkbox"/>
-            <label className="type-hebergement"> Appartemment</label>
-            </div>
-            <div>
-                <input type="checkbox" className="type-hebergement-checkbox"/>
-                <label className="type-hebergement"> Villa</label>
-            </div>
-            <div>
-                <input type="checkbox" className="type-hebergement-checkbox"/>
-                <label className="type-hebergement"> Séjours chez l'habitant</label>
-            </div>
+            <Select style={{width:"200px"}} defaultValue={"All"}>
+                <Select.Option value="All">All</Select.Option>
+                <Select.Option value="Hotel">Hotel</Select.Option>
+                <Select.Option value="Appartement">Appartement</Select.Option>
+                <Select.Option value="Riad">Riad</Select.Option>
+                <Select.Option value="Carvane">Carvane</Select.Option>
+                <Select.Option value="Villa">Villa</Select.Option>
+                <Select.Option value="Auberge de Jeunesse">Auberge de Jeunesse</Select.Option>
+                <Select.Option value="Chateau">Chateau</Select.Option>
+                <Select.Option value="Cabane">Cabane</Select.Option>
+                <Select.Option value="Others">All</Select.Option>
+            </Select>
         </div>
     </div>
 );
