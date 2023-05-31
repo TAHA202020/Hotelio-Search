@@ -2,12 +2,9 @@ import { useState,useRef } from "react";
 import "./css/input.css";
 import DatePicker from "./DatePicker";
 import { InputNumber } from "antd";
-export default function Inputs()
+export default function Inputs({setCity,setCountry})
 {
     let inputRef=useRef(null);
-    let maxmin=useRef();
-    let min=useRef();
-    let max=useRef();
     
     let [isVisible, setIsVisible] = useState(false);
     let [cities,setcities]=useState(new Set())
@@ -33,43 +30,8 @@ export default function Inputs()
     const ChangeInputValue=(e)=>
     {
         inputRef.current.value=e.target.innerHTML;
-    }
-    const checkMin=()=>
-    {
-        console.log("i am here")
-        if(min.current.value && max.current.value && min.current.value > max.current.value)
-        {
-            maxmin.current.style.setProperty('border-color', 'red', 'before');
-        }
-        else
-        {
-            maxmin.current.style.setProperty('border-color', 'rgb(155, 155, 155)', 'before');
-        }
-    }
-    let [stars,setstars]=useState(1);
-    let [oldstars,setoldstars]=useState(1);
-    const setStars=(value)=>
-    {
-        setstars(value);
-        setoldstars(value);
-    }
-    const hoverStar=(nextval)=>
-    {
-        setstars(nextval);
-    }    
-    const resetStar=()=>
-    {
-        setstars(oldstars);
-    }    
-    let [freeBreakfast,setfreeBreakfast]=useState(false);
-    const changefreeBreakfast=()=>
-    {
-        setfreeBreakfast(!freeBreakfast)
-    }
-    let [freeParking,setfreeParking]=useState(false);
-    const changefreeParking=()=>
-    {
-        setfreeParking(!freeParking)
+        setCity(e.target.innerHTML.split(",")[0]);
+        setCountry(e.target.innerHTML.split(",")[1].split(" ")[0]);
     }
     let [travelers,settravelers]=useState(1);
     return(
