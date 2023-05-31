@@ -3,15 +3,14 @@ import { DivIcon } from "leaflet";
 import MapHotel from "./MapHotel";
 import Navbar from "./Navbar";
 import { useEffect, useRef, useState } from "react";
-import "./css/search.css"
-import Images from "./Images";
+import "./css/search.css";
 import Filters from "./Fileters";
-import { Select } from "antd";                                                                                               
-import { useParams } from "react-router-dom";
+import { Select } from "antd";
 function Search() {
   let mapref=useRef()
   let center=[43.296398,5.370000]
   let [markers,setmarkers]=useState([])
+  let [fullMarkers,setFullMarkers]=useState();
   let [city,setCity]=useState();
   console.log("erndred")
   let [country,setCountry]=useState();
@@ -64,9 +63,23 @@ function Search() {
   }
   const getHotels=(bounds)=>
   {
-    fetch("http://localhost:8000/hotels",{method:"POST",body:JSON.stringify({bounds:bounds}),headers:{'Content-Type': 'application/json'}})
+    fetch("http://localhost:8000/hotels",{method:"POST",body:JSON.stringify({bounds:bounds}),headers:{'Content-Type': 'application/json'}}).then((res)=>res.json()).then((data)=>{
+      data.map((value,index)=>{value.iconUrl=new DivIcon({
+        className: 'custom-div-icon',
+        html: "<h4>"+value.Price+" $</h4>",
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30],
+        })
+        value.id=index;
+      }
+        )  
+        console.log(data)
+    setFullMarkers(data)
+    setmarkers(data)
+    })
   }
-  
+  let [selectvalue,setselectValue]=useState("None")
   return (
     <>
       <Navbar setCity={setCity} setCountry={setCountry}/>
@@ -74,12 +87,12 @@ function Search() {
       <div className="bodyContanier">
         <div className="images">
           <label className="label" style={{color:"black"}}>Filter By :</label>
-          <Select style={{width:"150px"}} defaultValue="None" options={[{value:"prix-croissant",label:"Ascending Price"},{value:"decreasing-price",label:"Decreasing Price"},{value:"none",label:"None"}]}/>
-          {markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.images} name={value.name} price={value.price} stars={value.rating} city={value.city}/>)}
+          <Select style={{width:"150px"}} value={selectvalue} defaultValue="None" options={[{value:"prix-croissant",label:"Ascending Price"},{value:"decreasing-price",label:"Decreasing Price"},{value:"none",label:"None"}]} onChange={(value)=>{setselectValue(value);console.log(value)}}/>
+          {/*markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.images} name={value.name} price={value.Price} city={city} />)*/}
         </div>
         <div className="map">
           <MapHotel mapref={mapref} getHotels={getHotels} center={center}>
-            {markers.map((value,index)=><Marker key={index} position={value.cords} icon={value.iconUrl}>
+            {markers.map((value,index)=><Marker key={index} position={[value.Latitude,value.Longitude]} icon={value.iconUrl}>
               <Popup><h3>{value.name}</h3></Popup>
             </Marker>
             )}

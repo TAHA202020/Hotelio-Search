@@ -5,10 +5,8 @@ import "./css/map.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 function Dragging(props) {
     const map = useMapEvents({dragend:() => {
-      console.log(map.getBounds())
       props.getHotels(map.getBounds());
     },zoomend:() => {
-        console.log(map.getBounds())
         props.getHotels(map.getBounds());
       }});
     return null;
