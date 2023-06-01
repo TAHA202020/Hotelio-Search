@@ -28,8 +28,14 @@ function getHotelsinBounds(bounds)
     {
         if(err)
             throw err
-        else
+        else{
+            result.map((value)=>
+            {
+                value.Images=value.Images.split(",")
+            })
+            console.log(result)
             res(result)
+        }
     })
     })
 }

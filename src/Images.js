@@ -19,7 +19,7 @@ export default function Images(props)
 return(
 <div className="card" onMouseEnter={props.onMouseEnter} onMouseLeave={props.onMouseLeave}>
     <div className="hotel-images">
-        <img src={myArray[currentIndex]} alt="not found"/>
+        <img src={"http://localhost:8000/images/"+myArray[currentIndex]+".jpg"} alt="not found"/>
         <button className="right change" onClick={cycleR}><img src="./img/next.png" alt="back" className="icon" /></button>
         <button className="left change" onClick={cycleL}><img src="./img/back.png" alt="back" className="icon" /></button>
     </div>

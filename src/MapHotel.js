@@ -8,6 +8,9 @@ function Dragging(props) {
       props.getHotels(map.getBounds());
     },zoomend:() => {
         props.getHotels(map.getBounds());
+      },moveend:()=>
+      {
+        props.getHotels(map.getBounds());
       }});
     return null;
   }
