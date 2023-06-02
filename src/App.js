@@ -5,7 +5,7 @@ import Reserve from './Reserve';
 
 function App(){
   return(<Routes>
-      <Route path="/" element={<Reserve />} />
+      <Route path="/search" element={<Reserve />} />
     </Routes>);
 
   

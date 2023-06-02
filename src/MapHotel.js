@@ -32,7 +32,7 @@ const Child = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     Center(center) {
       map.setView(center,13)
-    }
+    },getBounds(){return map.getBounds();}
   }));
 
   return <h1>Child</h1>;

@@ -1,14 +1,16 @@
 import "./css/filters.css"
 import Checkinput from "./Checkinput";
 import { Select } from "antd";
+import { useRef } from "react";
 
 export default function Filters(props)
 {
+    
     return(<div className="filters">
         <div className="extras">
             <label className="label">Prices:</label>
-            <input type="number" className="input-number min" placeholder="min"/>
-            <input type="number" className="input-number max" placeholder="max"/>
+            <input onBlur={(e)=>{props.setPrixmin(e.target.value);props.filter(props.markers,props.select,e.target.value,props.prixmax)}} type="number" className="input-number min" placeholder="min"/>
+            <input onBlur={(e)=>{props.setPrixMax(e.target.value);props.filter(props.markers,props.select,props.prixmin,e.target.value)}} type="number" className="input-number max" placeholder="max"/>
         </div>
         <div className="extras">
             <label className="label">Extras:</label>
@@ -22,12 +24,7 @@ export default function Filters(props)
             <Select style={{width:"200px"}} defaultValue={"All"} onChange={(value)=>
                 {
                     props.setSelect(value)
-                    if(value==="All")
-                    {
-                        props.setmarkers(props.markers)
-                    }
-                    else
-                        props.setmarkers(props.markers.filter(item=> item.TypeEstab===value))
+                    props.filter(props.markers,value,props.prixmin,props.prixmax)
                 }}>
                 <Select.Option value="All">All</Select.Option>
                 <Select.Option value="Hotel">Hotel</Select.Option>

@@ -2,8 +2,10 @@ import { useState,useRef } from "react";
 import "./css/input.css";
 import DatePicker from "./DatePicker";
 import { InputNumber } from "antd";
-export default function Inputs({setCity,setCountry})
+import { useNavigate } from "react-router-dom";
+export default function Inputs()
 {
+    let navigate=useNavigate();
     let inputRef=useRef(null);
     
     let [isVisible, setIsVisible] = useState(false);
@@ -30,10 +32,11 @@ export default function Inputs({setCity,setCountry})
     const ChangeInputValue=(e)=>
     {
         inputRef.current.value=e.target.innerHTML;
-        setCity(e.target.innerHTML.split(",")[0]);
-        setCountry(e.target.innerHTML.split(",")[1].split(" ")[0]);
+        
     }
     let [travelers,settravelers]=useState(1);
+    let [dates,setDates]=useState();
+    let rangepicker=useRef();
     return(
         <div className="inputsAll">
         <div className="globalinput" >
@@ -43,9 +46,12 @@ export default function Inputs({setCity,setCountry})
                     {Array.from(cities).map((value,index)=> <div onMouseDown={ChangeInputValue} key={index} className="options">{value}</div>)}
                 </div>}
             </div>
-            <DatePicker />
+            <DatePicker setDates={setDates}/>
             <InputNumber className="traverlers-count" min={0} max={10} value={travelers} onChange={(value)=>{settravelers(value)}}/>
-            <img src="./img/search.png" alt="search" className="searchbtn"/>
+            <img src="./img/search.png" alt="search" className="searchbtn" onClick={()=>
+                {
+                    navigate("/search?city="+inputRef.current.value.split(",")[0]+"&country="+inputRef.current.value.split(",")[1].split(" ")[1]+"&from="+dates[0]+"&to="+dates[1])
+                }}/>
         </div>
         </div>
     )
