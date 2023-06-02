@@ -50,6 +50,8 @@ app.post("/hotels",async (req,res)=>
 
 app.get("/",(req,res)=>
 {
+    console.log(req.ip)
+    console.log(req.headers)
     res.sendFile(__dirname+"/public/back.png")
 })
 app.listen(8000,()=>

@@ -14,6 +14,8 @@ function Search() {
   const queryParams = new URLSearchParams(location.search);
   const city = queryParams.get('city');
   const country = queryParams.get('country');
+  const from=queryParams.get("from")
+  console.log(from)
   const [loading,setLoading]=useState(false);
   const [prixmin,setPrixmin]=useState(null);
   const [prixmax,setPrixMax]=useState(null);
@@ -33,7 +35,7 @@ function Search() {
       console.log(lat)
       mapref.current.Center([lat,lon])
       console.log(mapref.current.getBounds())
-      //getHotels(mapref.current.getBounds())
+      getHotels(mapref.current.getBounds())
       setLoading(false)
     })
   },[city])
@@ -74,22 +76,19 @@ function Search() {
     setmarkers(newmarkers);
   }
   const Filter=(data,select,prixmin,prixmax)=>
-  {console.log("filter called")
+  {
     if(select!=="All")
     {
       data=data.filter(item=> item.TypeEstab===select)
     }
-    console.log(data)
     if(prixmin!==null && prixmin!=="")
     {
       data=data.filter(item=>item.Price>=prixmin)
     }
-    console.log(data)
     if(prixmax!==null && prixmax!=="")
     {
       data=data.filter(item=>item.Price<=prixmax)
     }
-    console.log(data)
     setmarkers(data)
   }
   const getHotels=(bounds)=>
