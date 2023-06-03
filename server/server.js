@@ -18,13 +18,17 @@ connection.connect(()=>
 })
 app.use(cors())
 
-function getHotelsinBounds(bounds)
+function getHotelsinBounds(bounds,from ,to )
 {
+
+    console.log(from)
+    console.log(to)
+    console.log(bounds)
     let sw=bounds["_southWest"];
     let ne=bounds["_northEast"];
     return new Promise((res,rej)=>
     {
-        connection.query(`SELECT * FROM establishment WHERE latitude >= ${sw.lat} AND latitude <= ${ne.lat} AND longitude >= ${sw.lng} AND longitude <=${ne.lng}`,(err,result)=>
+        connection.query(`SELECT * from establishment where ( EstabId in (SELECT EstabId from reservation where (ArrivalDate >'${to}' or DeparatureDate < '${from}')) or (EstabId not in (SELECT EstabId from reservation))) and latitude >= ${sw.lat} AND latitude <= ${ne.lat} AND longitude >= ${sw.lng} AND longitude <=${ne.lng}`,(err,result)=>
     {
         if(err)
             throw err
@@ -42,8 +46,10 @@ function getHotelsinBounds(bounds)
 
 app.post("/hotels",async (req,res)=>
 {
+    let from = req.body.from
+    let to=req.body.to
     let bounds=req.body.bounds
-    let response= await getHotelsinBounds(bounds)
+    let response= await getHotelsinBounds(bounds,from,to)
     res.send(response);
 })
 

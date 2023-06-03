@@ -1,11 +1,11 @@
 import React from 'react';
 import {  Route, Routes } from 'react-router-dom';
 
-import Reserve from './Reserve';
+import Search from './Search';
 
 function App(){
   return(<Routes>
-      <Route path="/search" element={<Reserve />} />
+      <Route path="/search" element={<Search />} />
     </Routes>);
 
   

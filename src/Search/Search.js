@@ -7,15 +7,15 @@ import "./css/search.css";
 import Filters from "./Fileters";
 import ReactLoadind from "react-loading"
 import Images from "./Images";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function Search() {
   let mapref=useRef()
   let location =useLocation()
   const queryParams = new URLSearchParams(location.search);
   const city = queryParams.get('city');
   const country = queryParams.get('country');
-  const from=queryParams.get("from")
-  console.log(from)
+  const [from ,setFrom]=useState(queryParams.get("from"))
+  const [to,setTo] =useState(queryParams.get("to"));
   const [loading,setLoading]=useState(false);
   const [prixmin,setPrixmin]=useState(null);
   const [prixmax,setPrixMax]=useState(null);
@@ -23,9 +23,11 @@ function Search() {
   let [markers,setmarkers]=useState([])
   let [fullMarkers,setFullMarkers]=useState();
   let [select,setSelect]=useState("All");
-  
+  let navigate=useNavigate();
   useEffect(()=>
   {
+    if(city===null || country ===null || from ===null || to ===null)
+      navigate("/")
     setLoading(true)
     fetch(`https://nominatim.openstreetmap.org/search?city=${city}&country=${country}&format=json&limit=1` ,{method:"GET"}).then(res=>res.json()).then(
     (data)=>
@@ -35,10 +37,10 @@ function Search() {
       console.log(lat)
       mapref.current.Center([lat,lon])
       console.log(mapref.current.getBounds())
-      getHotels(mapref.current.getBounds())
+      getHotels(mapref.current.getBounds(),from,to)
       setLoading(false)
     })
-  },[city])
+  },[navigate])
   const changeIconOfKey=(key)=>
   {
     let newmarkers=[...markers];
@@ -91,10 +93,12 @@ function Search() {
     }
     setmarkers(data)
   }
-  const getHotels=(bounds)=>
+  const getHotels=(bounds,from,to)=>
   {
+    console.log(from)
+    console.log(to)
     setLoading(true)
-    fetch("http://localhost:8000/hotels",{method:"POST",body:JSON.stringify({bounds:bounds}),headers:{'Content-Type': 'application/json'}}).then((res)=>res.json()).then((data)=>{
+    fetch("http://localhost:8000/hotels",{method:"POST",body:JSON.stringify({bounds:bounds,from:from,to:to}),headers:{'Content-Type': 'application/json'}}).then((res)=>res.json()).then((data)=>{
       data.map((value,index)=>{value.iconUrl=new DivIcon({
         className: 'custom-div-icon',
         html: "<h4>"+value.Price+" $</h4>",
@@ -112,14 +116,14 @@ function Search() {
   }
   return (
     <>
-      <Navbar/>
+      <Navbar city={city} country={country} getHotels={getHotels} navigate={navigate} mapref={mapref} from={from} to={to} setFrom={setFrom} setTo={setTo}/>
       <Filters prixmin={prixmin} prixmax={prixmax} select={select} filter={Filter} setPrixMax={setPrixMax} setPrixmin={setPrixmin} setSelect={setSelect} markers={fullMarkers} setmarkers={setmarkers}/>
       <div className="bodyContanier">
         <div className="images">
-          {loading?<ReactLoadind type="spinningBubbles" color="black" />:markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.Images} name={value.estabname+index} price={value.Price} city={city} />)}
+          {loading?<ReactLoadind type="spinningBubbles" color="black" />:markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.Images} name={value.TypeEstab+value.EstabId} price={value.Price} city={city} />)}
         </div>
         <div className="map">
-          <MapHotel mapref={mapref} getHotels={getHotels} center={center}>
+          <MapHotel mapref={mapref} getHotels={getHotels} center={center} from={from} to={to}>
             {markers.map((value,index)=><Marker eventHandlers={{
               mouseover: (event) => event.target.openPopup(),
               mouseout:(event)=>event.target.closePopup()

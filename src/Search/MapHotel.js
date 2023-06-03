@@ -4,13 +4,11 @@ import "leaflet/dist/leaflet.css";
 import "./css/map.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 function Dragging(props) {
-    const map = useMapEvents({dragend:() => {
-      props.getHotels(map.getBounds());
-    },zoomend:() => {
-        props.getHotels(map.getBounds());
+    const map = useMapEvents({zoomend:() => {
+        props.getHotels(map.getBounds(),props.from,props.to);
       },moveend:()=>
       {
-        props.getHotels(map.getBounds());
+        props.getHotels(map.getBounds(),props.from,props.to);
       }});
     return null;
   }
@@ -18,10 +16,10 @@ const MapHotel=(props)=>
 {
     return(
         <MapContainer center={props.center} zoom={13}>
-          <Dragging getHotels={props.getHotels}/>
+          <Dragging getHotels={props.getHotels} from={props.from} to={props.to}/>
           <Child ref={props.mapref}/>
           <TileLayer attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png'/>
-          <MarkerClusterGroup disableClusteringAtZoom={14}>
+          <MarkerClusterGroup maxClusterRadius={30}>
             {props.children} 
           </MarkerClusterGroup>    
         </MapContainer>

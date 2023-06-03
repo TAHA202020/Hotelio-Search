@@ -1,11 +1,9 @@
 import { useState,useRef } from "react";
 import "./css/input.css";
-import DatePicker from "./DatePicker";
+import Date from "./DatePicker";
 import { InputNumber } from "antd";
-import { useNavigate } from "react-router-dom";
-export default function Inputs()
+export default function Inputs(props)
 {
-    let navigate=useNavigate();
     let inputRef=useRef(null);
     
     let [isVisible, setIsVisible] = useState(false);
@@ -35,22 +33,24 @@ export default function Inputs()
         
     }
     let [travelers,settravelers]=useState(1);
-    let [dates,setDates]=useState();
-    let rangepicker=useRef();
+    let [dates,setDates]=useState([props.from,props.to]);
     return(
         <div className="inputsAll">
         <div className="globalinput" >
             <div className="input-container">
-                <input type="text" ref={inputRef} onChange={getOptions} onFocus={handleFocus} onBlur={handleBlur}  id="textinput" placeholder="City"/>
+                <input type="text" ref={inputRef} onChange={getOptions} onFocus={handleFocus} onBlur={handleBlur} value={props.city+", "+props.country}  id="textinput" placeholder="City"/>
                 {isVisible&&<div id="cityname" >
                     {Array.from(cities).map((value,index)=> <div onMouseDown={ChangeInputValue} key={index} className="options">{value}</div>)}
                 </div>}
             </div>
-            <DatePicker setDates={setDates}/>
+            <Date setDates={setDates} dates={dates}/>
             <InputNumber className="traverlers-count" min={0} max={10} value={travelers} onChange={(value)=>{settravelers(value)}}/>
             <img src="./img/search.png" alt="search" className="searchbtn" onClick={()=>
                 {
-                    navigate("/search?city="+inputRef.current.value.split(",")[0]+"&country="+inputRef.current.value.split(",")[1].split(" ")[1]+"&from="+dates[0]+"&to="+dates[1])
+                    props.navigate("/search?city="+inputRef.current.value.split(",")[0]+"&country="+inputRef.current.value.split(",")[1].split(" ")[1]+"&from="+dates[0]+"&to="+dates[1])
+                    props.getHotels(props.mapref.current.getBounds(),dates[0],dates[1])
+                    props.setTo(dates[1])
+                    props.setFrom(dates[0])
                 }}/>
         </div>
         </div>
