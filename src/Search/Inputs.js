@@ -38,7 +38,7 @@ export default function Inputs(props)
         <div className="inputsAll">
         <div className="globalinput" >
             <div className="input-container">
-                <input type="text" ref={inputRef} onChange={getOptions} onFocus={handleFocus} onBlur={handleBlur} value={props.city+", "+props.country}  id="textinput" placeholder="City"/>
+                <input type="text" ref={inputRef} onChange={getOptions} onFocus={handleFocus} onBlur={handleBlur} defaultValue={props.city+", "+props.country}  id="textinput" placeholder="City"/>
                 {isVisible&&<div id="cityname" >
                     {Array.from(cities).map((value,index)=> <div onMouseDown={ChangeInputValue} key={index} className="options">{value}</div>)}
                 </div>}

@@ -3,10 +3,10 @@ import moment from 'moment';
 import "antd/dist/reset.css";
 import "./css/datepicker.css";
 import dayjs from "dayjs";
+import { useState } from "react";
 export default function Date(props)
 {
-  console.log(props.dates)
-    function disabledDate(current) {
+  function disabledDate(current) {
         return current && current < moment().startOf('day');
       }
         return (
