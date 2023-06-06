@@ -7,14 +7,17 @@ function Dragging(props) {
     const map = useMapEvents({
       zoomstart:()=>
       {
+        props.setMarkers([])
         props.setLoading(true)
       },zoomend:() => {
         props.getHotels(map.getBounds(),props.from,props.to);
       },movestart:()=>
       {
+        props.setMarkers([])
         props.setLoading(true)
       },moveend:()=>
       {
+        
         props.getHotels(map.getBounds(),props.from,props.to);
       }});
     return null;
@@ -23,7 +26,7 @@ const MapHotel=(props)=>
 {
     return(
         <MapContainer center={props.center} zoom={13}>
-          <Dragging setLoading={props.setLoading} getHotels={props.getHotels} from={props.from} to={props.to}/>
+          <Dragging setMarkers={props.setMarkers} setLoading={props.setLoading} getHotels={props.getHotels} from={props.from} to={props.to}/>
           <Child ref={props.mapref}/>
           <TileLayer attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png'/>
           <MarkerClusterGroup maxClusterRadius={30}>

@@ -129,7 +129,7 @@ function Search() {
           {loading?<ReactLoadind type="spinningBubbles" color="black" />:markers.map((value,index)=><Images key={index} onMouseEnter={()=>{changeIconOfKey(value.id)}} onMouseLeave={()=>{resetIconKey(value.id)}} images={value.Images} name={value.TypeEstab+value.EstabId} price={value.Price} city={city} />)}
         </div>
         <div className="map">
-          <MapHotel setLoading={setLoading} mapref={mapref} getHotels={getHotels} center={center} from={from} to={to}>
+          <MapHotel setMarkers={setmarkers} setLoading={setLoading} mapref={mapref} getHotels={getHotels} center={center} from={from} to={to}>
             {markers.map((value,index)=><Marker eventHandlers={{
               mouseover: (event) => event.target.openPopup(),
               mouseout:(event)=>event.target.closePopup()
