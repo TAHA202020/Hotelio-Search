@@ -17,7 +17,6 @@ function Dragging(props) {
         props.setLoading(true)
       },moveend:()=>
       {
-        
         props.getHotels(map.getBounds(),props.from,props.to);
       }});
     return null;

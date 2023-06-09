@@ -1,4 +1,4 @@
-.filter
+.taha-filter
 {
     display: flex;
     flex-direction: row;
@@ -9,7 +9,7 @@
     padding: 3px;
     color: white;
 }
-.all
+.taha-all
 {
     margin-right: 10px;
     user-select: none;
@@ -17,13 +17,13 @@
     text-align: center;
     transition-duration: 0.1s;
 }
-.checkbox:checked ~ .filter
+.taha-checkbox:checked ~ .filter
 {
     transition-duration: 0.1s;
     color: #FFB400;
     border:1px solid #FFB400;
 }
-.checkbox
+.taha-checkbox
 {
     cursor: pointer;
     position: absolute;
@@ -39,7 +39,7 @@
     margin: 0;
     padding: 0;
 }
-.text
+.taha-text
 {
     font-size: medium;
 }

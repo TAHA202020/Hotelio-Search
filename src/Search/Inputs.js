@@ -2,10 +2,11 @@ import { useState,useRef } from "react";
 import "./css/input.css";
 import Date from "./DatePicker";
 import { InputNumber } from "antd";
+import { useNavigate } from "react-router-dom";
 export default function Inputs(props)
 {
     let inputRef=useRef(null);
-    
+    let navigate=useNavigate()
     let [isVisible, setIsVisible] = useState(false);
     let [cities,setcities]=useState(new Set())
     const getOptions= async(e)=>
@@ -47,10 +48,7 @@ export default function Inputs(props)
             <InputNumber className="traverlers-count" min={0} max={10} value={travelers} onChange={(value)=>{settravelers(value)}}/>
             <img src="./img/search.png" alt="search" className="searchbtn" onClick={()=>
                 {
-                    props.navigate("/search?city="+inputRef.current.value.split(",")[0]+"&country="+inputRef.current.value.split(",")[1].split(" ")[1]+"&from="+dates[0]+"&to="+dates[1])
-                    props.getHotels(props.mapref.current.getBounds(),dates[0],dates[1])
-                    props.setTo(dates[1])
-                    props.setFrom(dates[0])
+                    window.location.href="/search?city="+inputRef.current.value.split(",")[0]+"&country="+inputRef.current.value.split(",")[1].split(" ")[1]+"&from="+dates[0]+"&to="+dates[1]
                 }}/>
         </div>
         </div>
